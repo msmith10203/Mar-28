@@ -26,14 +26,14 @@
             b.size.width,
             height);
         textField = [[UITextField alloc] initWithFrame:f];
-        textField.borderStyle = UITextBorderStyleNone;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
         textField.backgroundColor = [UIColor yellowColor];
         textField.textColor = [UIColor blackColor];
-        textField.clearButtonMode=UITextFieldViewModeAlways;
+        textField.clearButtonMode=UITextFieldViewModeWhileEditing;
         textField.returnKeyType = UIReturnKeyDone;
         textField.font=font;
         textField.placeholder=@"<type a word>";
-        textField.textAlignment=UITextAlignmentLeft;
+        textField.textAlignment=UITextAutocorrectionTypeYes;
         textField.autocapitalizationType=UITextAutocorrectionTypeNo;
         textField.secureTextEntry=NO;
         textField.delegate=self;
@@ -56,9 +56,12 @@
 #pragma mark methods of UITextFieldDelegate protocol
 
 -(BOOL) textFieldShouldReturn: (UITextField *) tf {
-    if ([tf.text isEqualToString:@""]) {
-        textField.placeholder=@"<type a nonempty word>";
+    if ([tf.text rangeOfString: @"watermelon"].location != NSNotFound) {
+        textField.text=@"";
+        textField.placeholder=@"cannot use watermellon";
+        //textField.placeholder=@"<type a word>";
     }else {
+        
         [tf resignFirstResponder];
     }
     return YES;
