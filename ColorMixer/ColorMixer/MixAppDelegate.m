@@ -8,20 +8,52 @@
 
 #import "MixAppDelegate.h"
 #import "View.h"
+#import "Base.h"
+
 
 @implementation MixAppDelegate
+
+@synthesize view;
+@synthesize baseView;
+@synthesize red;
+@synthesize blue;
+@synthesize green;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     UIScreen *screen = [UIScreen mainScreen];
 	view = [[View alloc] initWithFrame: screen.applicationFrame];
+    baseView = [[BaseView alloc] initWithFrame: screen.applicationFrame];
+    
 	self.window = [[UIWindow alloc] initWithFrame: screen.bounds];
 	//self.window.backgroundColor = [UIColor whiteColor];
     
-	[self.window addSubview: view];
 	[self.window makeKeyAndVisible];
+    [self.window addSubview: baseView];
 	return YES;
 
+}
+
+- (void) switchValueChanged: (id) sender {
+	UISwitch *s = sender;
+	if (s.isOn) {
+		//The UISwitch has just been turned on.
+        [view removeFromSuperview];
+        
+        [UIView animateWithDuration: 5.0
+                              delay: 2.0
+                            options: UIViewAnimationOptionCurveEaseInOut
+                         animations: ^{
+                             //This block describes what the animation should do.
+                             self.baseView.backgroundColor = [UIColor colorWithRed:
+                                                              red green: green blue: blue alpha: 1.0];
+                         }
+                         completion: NULL
+         ];
+        
+        
+      
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

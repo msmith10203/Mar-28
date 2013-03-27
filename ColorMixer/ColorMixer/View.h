@@ -7,18 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef enum{
+    RED = 0,
+    BLUE,
+    Green
+} Colors;
 
 @interface View : UIView {
-    UISlider *redSlider;
-	UILabel *redLabel;
-    UISlider *greenSlider;
-	UILabel *greenLabel;
-    UISlider *blueSlider;
-	UILabel *blueLabel;
-    UIButton *mixButton;
     
-    UILabel *label;
-    UISlider *slider;
 }
+
+
 
 @end

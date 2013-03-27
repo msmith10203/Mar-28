@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7890347417027BA5002B5AC5 /* Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 7890347317027BA5002B5AC5 /* Base.m */; };
 		78A47BA016FEC7050010F636 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A47B9F16FEC7050010F636 /* UIKit.framework */; };
 		78A47BA216FEC7050010F636 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A47BA116FEC7050010F636 /* Foundation.framework */; };
 		78A47BA416FEC7050010F636 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A47BA316FEC7050010F636 /* CoreGraphics.framework */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7890347217027BA5002B5AC5 /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
+		7890347317027BA5002B5AC5 /* Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base.m; sourceTree = "<group>"; };
 		78A47B9C16FEC7050010F636 /* ColorMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A47B9F16FEC7050010F636 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78A47BA116FEC7050010F636 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -86,6 +89,8 @@
 				78A47BBC16FEC71F0010F636 /* View.h */,
 				78A47BBD16FEC71F0010F636 /* View.m */,
 				78A47BA616FEC7050010F636 /* Supporting Files */,
+				7890347217027BA5002B5AC5 /* Base.h */,
+				7890347317027BA5002B5AC5 /* Base.m */,
 			);
 			path = ColorMixer;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				78A47BAC16FEC7050010F636 /* main.m in Sources */,
 				78A47BB016FEC7050010F636 /* MixAppDelegate.m in Sources */,
 				78A47BBE16FEC71F0010F636 /* View.m in Sources */,
+				7890347417027BA5002B5AC5 /* Base.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +293,7 @@
 				78A47BBB16FEC7050010F636 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

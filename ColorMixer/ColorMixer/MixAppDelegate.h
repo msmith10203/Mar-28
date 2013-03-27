@@ -11,9 +11,20 @@
 
 @interface MixAppDelegate : UIResponder <UIApplicationDelegate>{
     View *view;
+    View *baseView;
 	UIWindow *_window;
+    float red;
+    float blue;
+    float green;
 }
 
+- (void) switchValueChanged: (id) sender;
+
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) View *view;
+@property (strong, nonatomic) View *baseView;
+@property float red;
+@property float green;
+@property float blue;
 
 @end

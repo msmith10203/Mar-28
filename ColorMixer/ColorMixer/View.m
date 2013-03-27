@@ -5,168 +5,262 @@
 //  Created by Mike Smith on 3/24/13.
 //  Copyright (c) 2013 Mike Smith. All rights reserved.
 //
-
+#import "MixAppDelegate.h"
 #import "View.h"
 
 @implementation View
 
-- (void) valueChanged: (id) sender {
+enum color {red, blue, green};
+
+- (void) redValueChanged: (id) sender {
 	UISlider *s = sender;
 
+    MixAppDelegate *app = [UIApplication sharedApplication].delegate;
     
-	float red = (s.value - s.minimumValue)
+	app.red = (s.value - s.minimumValue)
+    / (s.maximumValue - s.minimumValue);
+    
+    self.backgroundColor = [UIColor colorWithRed:
+                            app.red green: app.green blue: app.blue alpha: 1.0];
+}
+
+- (void) blueValueChanged: (id) sender {
+	UISlider *s = sender;
+    
+    MixAppDelegate *app = [UIApplication sharedApplication].delegate;
+    
+	app.blue = (s.value - s.minimumValue)
+    / (s.maximumValue - s.minimumValue);
+    
+    self.backgroundColor = [UIColor colorWithRed:
+                                             app.red green: app.green blue: app.blue alpha: 1.0];
+}
+
+- (void) greenValueChanged: (id) sender {
+	UISlider *s = sender;
+    
+    MixAppDelegate *app = [UIApplication sharedApplication].delegate;
+    
+	app.green = (s.value - s.minimumValue)
     / (s.maximumValue - s.minimumValue);
 
-/*
-	slider.backgroundColor = [UIColor colorWithRed:
-                              red green: 0.0 blue: 1.0 - red alpha: 1.0];
-    
-	label.text = [NSString stringWithFormat: @"%5.1f° F == %5.1f° C",
-                  slider.value, CELSIUS(slider.value)];
-*/ 
+    self.backgroundColor = [UIColor colorWithRed:
+                            app.red green: app.green blue: app.blue alpha: 1.0];
 }
+
 - (id)initWithFrame:(CGRect)frame
 {
    	self = [super initWithFrame: frame];
 	if (self) {
 		// Initialization code
 		self.backgroundColor = [UIColor whiteColor];
-		float minimumValue = 32;	//freezing point of water in Fahrenheit
-		float maximumValue = 212;
+		float minimumValue = 0;	//freezing point of water in Fahrenheit
+		float maximumValue = 100;
         
 		//Center the slider in the View.
 		CGRect b = self.bounds;
-		CGSize s = CGSizeMake(maximumValue - minimumValue, 16);
         
+        NSString *headerText = @"  Screen Color Picker ";
+        UIFont *headerFont = [UIFont italicSystemFontOfSize: 16];
+        CGSize size = [headerText sizeWithFont: headerFont];
         
-		CGRect greenFrame = CGRectMake(
-                                      b.origin.x + (b.size.width - s.width) / 2,
-                                      b.origin.y + (b.size.height - s.height) / 2,
-                                      s.width,
-                                      s.height
-                                      );
-		greenSlider = [[UISlider alloc] initWithFrame: greenFrame];
-		greenSlider.minimumValue = minimumValue;
-		greenSlider.maximumValue = maximumValue;
-		greenSlider.value = (minimumValue + maximumValue) / 2;
-		greenSlider.continuous = YES;	//default is YES
-		CGFloat green = (greenSlider.value - greenSlider.minimumValue)
-        / (greenSlider.maximumValue - greenSlider.minimumValue);
-		greenSlider.backgroundColor = [UIColor colorWithRed:0 green:1 blue:0 alpha: 1.0];
-        greenSlider.minimumTrackTintColor    = [UIColor colorWithRed:0 green:1 blue:0 alpha:1.0];
-        greenSlider.maximumTrackTintColor    = [UIColor colorWithRed:0 green:1 blue:0 alpha:1.0];
-        
-        NSString *text = @"Green";
-        UIFont *font = [UIFont italicSystemFontOfSize:11];
-        CGSize size = [text sizeWithFont: font];
-        
-        
-        greenFrame.origin.x=0;
-        greenLabel = [[UILabel alloc] initWithFrame:greenFrame];
-        
-
-        CGRect rect = [self color: @"green" label: greenLabel slider: greenSlider];
-
-        
-		CGRect blueFrame = CGRectMake(
-                              b.origin.x + (b.size.width - s.width) / 2,
-                              greenFrame.origin.y + greenFrame.size.height*2,
-                              s.width,
-                              s.height
+        CGRect f = CGRectMake(
+                              80,
+                              130,
+                              size.width,
+                              size.height
                               );
-		blueSlider = [[UISlider alloc] initWithFrame: blueFrame];
-		blueSlider.minimumValue = minimumValue;
-		blueSlider.maximumValue = maximumValue;
-		blueSlider.value = (minimumValue + maximumValue) / 2;
-		blueSlider.continuous = YES;	//default is YES
-		CGFloat blue = (blueSlider.value - blueSlider.minimumValue)
-        / (blueSlider.maximumValue - blueSlider.minimumValue);        
-		blueSlider.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha: 1.0];
-        blueSlider.minimumTrackTintColor    = [UIColor colorWithRed:0 green:0 blue:1 alpha:1.0];
-        blueSlider.maximumTrackTintColor    = [UIColor colorWithRed:0 green:0 blue:1 alpha:1.0];
         
-        CGRect redFrame = CGRectMake(
-                              b.origin.x + (b.size.width - s.width) / 2,
-                              greenFrame.origin.y + greenFrame.size.height*4,
-                              s.width,
-                              s.height
-                              );
-        redSlider = [[UISlider alloc] initWithFrame: redFrame];
-		redSlider.minimumValue = minimumValue;
-		redSlider.maximumValue = maximumValue;
-		redSlider.value = (minimumValue + maximumValue) / 2;
-		redSlider.continuous = YES;	//default is YES
-        CGFloat red = (redSlider.value - redSlider.minimumValue)
-        / (redSlider.maximumValue - redSlider.minimumValue);
-		redSlider.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha: 1.0];
-        redSlider.minimumTrackTintColor    = [UIColor colorWithRed:1 green:0 blue:0 alpha:1.0];
-        redSlider.maximumTrackTintColor    = [UIColor colorWithRed:1 green:0 blue:0 alpha:1.0];
+        UILabel *scrLabel = [[UILabel alloc] initWithFrame: f];
+        scrLabel.font = headerFont;
+        scrLabel.backgroundColor = [UIColor clearColor];
+        scrLabel.textColor = [UIColor whiteColor];
+        scrLabel.text = headerText;
+        [self addSubview: scrLabel];
+        
+        [self installSwitchX: 170 installSwitchY: 170];
+        
+        NSString *text = @"Green ";
+        UIFont *font = [UIFont italicSystemFontOfSize:18];
+        CGSize greenLabelSize = [text sizeWithFont: font];
+        CGRect greenLabelFrame = CGRectZero;
+		CGSize greenSliderSize = CGSizeMake(maximumValue - minimumValue, 16);
+        CGRect greenSliderFrame = CGRectZero;
+        
+        greenSliderFrame = [self labelSize: greenLabelSize sliderSize: greenSliderSize boundsRect: b labelCGRect: &greenLabelFrame yIncrement: -20 xIncrement: 0];
+                
+        UILabel *greenLabel = [[UILabel alloc] initWithFrame:greenLabelFrame];
+        UISlider *greenSlider = [[UISlider alloc] initWithFrame: greenSliderFrame];
 
+        [self bgColor:Green initSlider: greenSlider initLabel: greenLabel color: [UIColor greenColor]
+                redColor: 0 greenColor: 1 blueColor: 0 text: @"Green" font: font maximumValue: maximumValue minimumValue: minimumValue];
         
+        NSString *text2 = @"Blue ";
+        UIFont *font2 = [UIFont italicSystemFontOfSize:18];
+        CGSize blueLabelSize = [text2 sizeWithFont: font2];
+        CGRect blueLabelFrame = CGRectZero;
+		CGSize blueSliderSize = CGSizeMake(maximumValue - minimumValue, 16);
+        CGRect blueSliderFrame = CGRectZero;
         
+        blueSliderFrame = [self labelSize: blueLabelSize sliderSize: blueSliderSize boundsRect: b labelCGRect: &blueLabelFrame
+                              labelOrigin: greenLabelFrame.origin sliderOrigin:greenSliderFrame.origin yIncrement: 40];
         
-		//As the slider goes from the minimum to the maximum value,
-		//red goes from 0 to 1.  Conversely, blue goes from 1 to 0.
+        UILabel *blueLabel = [[UILabel alloc] initWithFrame:blueLabelFrame];
+        UISlider *blueSlider = [[UISlider alloc] initWithFrame: blueSliderFrame];
+        
+        [self bgColor: BLUE initSlider: blueSlider initLabel: blueLabel color: [UIColor blueColor]
+                redColor: 0 greenColor: 0 blueColor: 1 text: @"Blue" font: font maximumValue: maximumValue minimumValue: minimumValue];
        
-//                                  blue green: 0.0 blue: 1.0 - blue alpha: 1.0];
+        NSString *text3 = @"Red ";
+        UIFont *font3 = [UIFont italicSystemFontOfSize:18];
+        CGSize redLabelSize = [text3 sizeWithFont: font3];
+        CGRect redLabelFrame = CGRectZero;
+		CGSize redSliderSize = CGSizeMake(maximumValue - minimumValue, 16);
+        CGRect redSliderFrame = CGRectZero;
         
-		[slider addTarget:self
-                   action: @selector(valueChanged:)
-         forControlEvents: UIControlEventValueChanged
-         ];
+        redSliderFrame = [self labelSize: redLabelSize sliderSize: redSliderSize boundsRect: b labelCGRect: &redLabelFrame
+                             labelOrigin: greenLabelFrame.origin sliderOrigin: greenSliderFrame.origin yIncrement:80];
         
-		[self addSubview: blueSlider];
-        [self addSubview: redSlider];
-        [self addSubview:greenSlider];
-
-/*
-		//Put the label above the slider
-		//with a 10-pixel margin between them.
-		UIFont *font = [UIFont fontWithName: @"Courier" size: 26];
-		s = [@"123.4f° F == 123.4f° C" sizeWithFont: font];
+        UILabel *redLabel = [[UILabel alloc] initWithFrame:redLabelFrame];
+        UISlider *redSlider = [[UISlider alloc] initWithFrame: redSliderFrame];
         
-		f = CGRectMake(
-                       b.origin.x + (b.size.width - s.width) / 2,
-                       b.origin.y + (b.size.height - slider.frame.size.height) / 2 - s.height - 10,
-                       s.width,
-                       s.height
-                       );
-        
-		label = [[UILabel alloc] initWithFrame: f];
-		label.textAlignment = UITextAlignmentCenter;
-		label.font = font;
-		[self valueChanged: slider];
-		[self addSubview: label];
-*/
-        
-        CGRect rect = [self color: @"green" label: greenLabel slider: greenSlider];
-        
+        [self bgColor: RED initSlider: redSlider initLabel: redLabel color: [UIColor redColor]
+                redColor: 1 greenColor: 0 blueColor: 0 text: @"Red" font: font maximumValue: maximumValue minimumValue: minimumValue];
 	}
 	return self;
 
 }
 
--(CGRect) color: (NSString *) clr label: (UILabel *) lbl slider: (UISlider *) sldr {
-    CGRect ret = CGRectZero;
-    if ([clr isEqualToString: @"green"]){
-        ret.size.height=24;
-        ret.size.width=25;
-    } else if ([clr isEqualToString:@"blue"]) {
-        
-    } else {
-        
-        
-    }
-    return ret;
-}
-
-/*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    //Fill a right triangle.
+	CGSize size = self.bounds.size;
+	CGFloat min = MIN(size.width, size.height);
+	CGFloat length = min * 5 / 8;           //of side
+    
+	CGContextRef c = UIGraphicsGetCurrentContext();
+    
+	//origin at right angle
+	CGContextTranslateCTM(c,
+                          (size.width + length) / 2,
+                          (size.height + length) / 2
+                          );
+	CGContextScaleCTM(c, 1, -1);
+    
+	CGContextBeginPath(c);
+	CGContextMoveToPoint(c, 0, 0);          //lower right vertex (the right angle)
+	CGContextAddLineToPoint(c, 0, length);  //upper right vertex
+    CGContextAddLineToPoint(c, -length, length);  // upper left vertex
+	CGContextAddLineToPoint(c, -length, 0); //lower left vertex
+	CGContextClosePath(c);                  //back to starting point
+    
+	CGContextSetRGBFillColor(c, 0.0, 0.0, 1.0, 1.0);
+	CGContextFillPath(c);
 }
-*/
+
+-(void) installSwitchX: (float) x installSwitchY: (int) y
+{
+    //Do not specify a size for the switch.
+    //Let the switch assume its own natural size.
+    UISwitch *mySwitch = [[UISwitch alloc] initWithFrame: CGRectZero];
+    if (mySwitch == nil) {
+        return;
+    }
+    
+    //Call the valueChanged: method of the application delegate
+    //when the value of the switch is changed.
+    
+    [mySwitch addTarget: [UIApplication sharedApplication].delegate
+                 action: @selector(switchValueChanged:)
+       forControlEvents: UIControlEventValueChanged
+     ];
+    
+    mySwitch.center = CGPointMake(
+                                  x,
+                                  y
+                                  );
+    
+    mySwitch.on = NO;	//the default
+    [self addSubview: mySwitch];
+}
+
+-(void) bgColor: (Colors) bgClr initSlider: (UISlider*) slider initLabel: (UILabel*) label color: (UIColor*) clr
+               redColor: (int) red greenColor: (int) green blueColor: (int) blue text: (NSString*) txt font: (UIFont*) fnt
+      maximumValue: (float) max minimumValue:(float) min {
+    
+    label.font = fnt;
+    label.backgroundColor = clr;
+    label.textColor = [UIColor blackColor];
+    label.text = txt;
+    [self addSubview:label];
+    
+    slider.minimumValue = min;
+    slider.maximumValue = max;
+    slider.value = (min + max) / 2;
+    slider.continuous = YES;
+    slider.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha: 1.0];
+    slider.minimumTrackTintColor    = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    slider.maximumTrackTintColor    = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    
+    //CGColorRef colorRef = [UIColor redColor].CGColor;
+    //NSString *colorString = [CIColor colorWithCGColor:colorRef].stringRepresentation;
+    
+    if (bgClr == RED){
+        [slider addTarget:self
+                   action: @selector(redValueChanged:)
+                forControlEvents: UIControlEventValueChanged
+         ];
+    } else if (bgClr==BLUE) {
+        [slider addTarget:self
+                   action: @selector(blueValueChanged:)
+         forControlEvents: UIControlEventValueChanged
+         ];
+    } else if (bgClr==Green){
+        [slider addTarget:self
+                   action: @selector(greenValueChanged:)
+         forControlEvents: UIControlEventValueChanged
+         ];    }
+    [self addSubview:slider];
+    
+}
+
+-(CGRect) labelSize: (CGSize) lblSize sliderSize: (CGSize) sldrSize boundsRect: (CGRect) b
+        labelCGRect: (CGRect*) lblCGRect labelOrigin: (CGPoint) lblOrigin sliderOrigin: (CGPoint) sldrOrigin yIncrement: (int) yIncr {
+    
+    CGRect ret = CGRectZero;
+    
+    ret = CGRectMake(sldrOrigin.x,
+                     sldrOrigin.y+yIncr,
+                     sldrSize.width,
+                     sldrSize.height
+                     );
+    *lblCGRect = CGRectMake(lblOrigin.x,
+                            lblOrigin.y+yIncr,
+                            lblSize.width,
+                            lblSize.height
+                            );
+    return ret;
+}
+
+-(CGRect) labelSize: (CGSize) lblSize sliderSize: (CGSize) sldrSize boundsRect: (CGRect) b
+labelCGRect: (CGRect*) lblCGRect yIncrement: (int) yIncr xIncrement: (int) xIncr {
+    
+    CGRect ret = CGRectZero;
+
+        ret = CGRectMake(b.origin.x + (b.size.width - lblSize.width-sldrSize.width)/2 + lblSize.width + 5 + xIncr,
+                         b.origin.y + (b.size.height - sldrSize.height)/2 + yIncr,
+                         sldrSize.width,
+                         sldrSize.height
+                         );
+        *lblCGRect = CGRectMake(b.origin.x + (b.size.width - lblSize.width-sldrSize.width)/2,
+                               b.origin.y + (b.size.height - lblSize.height)/2 + 5 + yIncr,
+                               lblSize.width,
+                               lblSize.height
+                               );
+    return ret;
+}
+
 
 @end
