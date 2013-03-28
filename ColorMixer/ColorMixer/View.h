@@ -14,9 +14,18 @@ typedef enum{
 } Colors;
 
 @interface View : UIView {
-    
+    UISwitch *mySwitch;
+    UISlider *greenSlider;
+    UISlider *redSlider;
+    UISlider *blueSlider;
+    UILabel *greenLabel;
+    UILabel *redLabel;
+    UILabel *blueLabel;
 }
 
-
+@property (strong, nonatomic) UISwitch *mySwitch;
+@property (strong, nonatomic) UISlider *greenSlider;
+@property (strong, nonatomic) UISlider *redSlider;
+@property (strong, nonatomic) UISlider *blueSlider;
 
 @end

@@ -29,11 +29,9 @@
     UIImage *image = [UIImage imageNamed: @"orange.jpg"];	//100 by 100
     if (image == nil) {
         NSLog(@"could not find the image");
-        
+        return;
     }
-    
     CGPoint point = CGPointMake(0,0);
-
     [image drawAtPoint: point];
 }
 

@@ -15,6 +15,4 @@
     ImageView *imageView;
 }
 
-
-
 @end

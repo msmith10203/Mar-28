@@ -24,22 +24,16 @@
     UIScreen *screen = [UIScreen mainScreen];
 	view = [[View alloc] initWithFrame: screen.applicationFrame];
     baseView = [[BaseView alloc] initWithFrame: screen.applicationFrame];
-    
 	self.window = [[UIWindow alloc] initWithFrame: screen.bounds];
-	//self.window.backgroundColor = [UIColor whiteColor];
-    
 	[self.window makeKeyAndVisible];
     [self.window addSubview: baseView];
 	return YES;
-
 }
-
 - (void) switchValueChanged: (id) sender {
 	UISwitch *s = sender;
 	if (s.isOn) {
 		//The UISwitch has just been turned on.
         [view removeFromSuperview];
-        
         [UIView animateWithDuration: 5.0
                               delay: 0.0
                             options: UIViewAnimationOptionCurveEaseInOut
@@ -50,9 +44,15 @@
                          }
                          completion: NULL
          ];
-        
-        
-      
+    } else {
+        view.backgroundColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1.0];
+        MixAppDelegate *app = [UIApplication sharedApplication].delegate;
+        app.red = 0;
+        app.blue = 0;
+        app.green = 0;
+        view.greenSlider.value=0.0;
+        view.redSlider.value=0.0;
+        view.blueSlider.value=0.0;
     }
 }
 
