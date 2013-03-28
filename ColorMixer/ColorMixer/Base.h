@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ImageView.h"
 
 @interface BaseView : UIView {
     UILabel *label;
     UILabel *label2;
+    ImageView *imageView;
 }
 
 

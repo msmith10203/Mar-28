@@ -9,6 +9,7 @@
 #import "MixAppDelegate.h"
 #import "View.h"
 #import "Base.h"
+#import "ImageView.h"
 
 @implementation BaseView
 
@@ -45,7 +46,7 @@
         
         //Trailing blank to avoid cutting off last letter
         //because italic leans to the right.
-        NSString *text2 = @"  Swipe to begin ";
+        NSString *text2 = @"  Swipe to begin or click image";
         UIFont *font2 = [UIFont italicSystemFontOfSize: 16];
         CGSize size2 = [text2 sizeWithFont: font2];
         
@@ -62,6 +63,10 @@
         label2.text = text2;
         [self addSubview: label2];
         
+        
+        CGRect fImage = CGRectMake(110, 300, 98, 105);
+        imageView = [[ImageView alloc] initWithFrame: fImage];
+        [self addSubview: imageView];
         
         UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc]
                                                 initWithTarget: self action: @selector(swipe:)
@@ -92,6 +97,25 @@
     return self;
 }
 
+
+- (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event {
+    if (touches.count > 0) {
+        //UITouch *touch = [touches anyObject];
+        //CGPoint point = [touch locationInView: self];
+        //imageView.center = point;	//Move the littleView to a new location.
+        
+        MixAppDelegate *app = [UIApplication sharedApplication].delegate;
+        
+        
+        //[self.window removeFromSuperview: app.baseView];
+        [self.window addSubview: app.view];
+        [self.window makeKeyAndVisible];
+        
+        //Can combine the above three statements to
+        //littleView.center = [[touches anyObject] locationInView: self];
+    }
+}
+
 - (void) swipe: (UISwipeGestureRecognizer *) recognizer {
 	   
     MixAppDelegate *app = [UIApplication sharedApplication].delegate;
@@ -105,29 +129,12 @@
     
 	}
 
-
+/*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
-    
-    UIImage *image = [UIImage imageNamed: @"orange.jpg"];	//100 by 100
-    if (image == nil) {
-        NSLog(@"could not find the image");
-        
     }
-    
-    
-    CGFloat w = self.bounds.size.width;
-    CGFloat h = self.bounds.size.height;        //upper left corner of image
-    CGPoint point = CGPointMake(
-                                        (w - image.size.width) / 2,
-                                        h - image.size.height - 20
-                                        );
-    
-    [image drawAtPoint: point];
-}
-
+*/
 
 @end
