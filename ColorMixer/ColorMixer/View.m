@@ -53,7 +53,7 @@ enum color {red, blue, green};
    	self = [super initWithFrame: frame];
 	if (self) {
 		// Initialization code
-		self.backgroundColor = [UIColor whiteColor];
+		self.backgroundColor = [UIColor blackColor];
 		float minimumValue = 0;	//freezing point of water in Fahrenheit
 		float maximumValue = 100;
         
@@ -198,7 +198,7 @@ enum color {red, blue, green};
     
     slider.minimumValue = min;
     slider.maximumValue = max;
-    slider.value = (min + max) / 2;
+    slider.value = 0;//(min + max) / 2;
     slider.continuous = YES;
     slider.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha: 1.0];
     slider.minimumTrackTintColor    = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];

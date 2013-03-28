@@ -41,7 +41,7 @@
         [view removeFromSuperview];
         
         [UIView animateWithDuration: 5.0
-                              delay: 2.0
+                              delay: 0.0
                             options: UIViewAnimationOptionCurveEaseInOut
                          animations: ^{
                              //This block describes what the animation should do.
