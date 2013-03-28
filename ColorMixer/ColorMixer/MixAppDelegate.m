@@ -35,7 +35,7 @@
 		//The UISwitch has just been turned on.
         [view removeFromSuperview];
         [UIView animateWithDuration: 5.0
-                              delay: 0.0
+                              delay: 1.0
                             options: UIViewAnimationOptionCurveEaseInOut
                          animations: ^{
                              //This block describes what the animation should do.

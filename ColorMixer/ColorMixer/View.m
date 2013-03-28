@@ -124,7 +124,7 @@ enum color {red, blue, green};
     CGContextAddLineToPoint(c, -length, length);  // upper left vertex
 	CGContextAddLineToPoint(c, -length, 0); //lower left vertex
 	CGContextClosePath(c);                  //back to starting point
-	CGContextSetRGBFillColor(c, 0.0, 0.0, 1.0, 1.0);
+	CGContextSetRGBFillColor(c, 0.5, 0.5, 0.5, 1.0);  //white ?
 	CGContextFillPath(c);
 }
 -(void) installSwitchX: (float) x installSwitchY: (int) y
