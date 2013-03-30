@@ -103,4 +103,44 @@
     //[self resetSwitchInApp:app];    
 	}
 
+
+- (void) touchesMoved: (NSSet *) touches withEvent: (UIEvent *) event {
+    if (touches.count > 0) {
+        UITouch *touch = [touches anyObject];
+        CGPoint point = [touch locationInView: self];
+//        imageView.center = point;	//Move the littleView to a new location.
+        
+    }
+}
+
+- (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event {
+	imageView.backgroundColor = [UIColor yellowColor];
+}
+
+- (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+}
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+
+/*
+- (void) drawRect: (CGRect) rect
+{
+    // Drawing code
+
+    [UIView animateWithDuration: 5
+                          delay: 1
+                        options: UIViewAnimationOptionCurveLinear
+                     animations: ^{
+                         //Move the label far enough to the left
+                         //so that it's out of the View.
+                         imageView.center = CGPointMake(160, 300);
+                     }
+                     completion: NULL
+     ];
+ 
+}
+*/
+
 @end

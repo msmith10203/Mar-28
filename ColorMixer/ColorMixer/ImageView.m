@@ -31,8 +31,10 @@
         NSLog(@"could not find the image");
         return;
     }
+    
     CGPoint point = CGPointMake(0,0);
     [image drawAtPoint: point];
+    
 }
 
 
