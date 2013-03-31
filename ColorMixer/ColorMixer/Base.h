@@ -13,6 +13,7 @@
     UILabel *label;
     UILabel *label2;
     ImageView *imageView;
+    
 }
 
 @end
