@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ImageView.h"
+@class ImageView;
 
 @interface BaseView : UIView {
     UILabel *label;
