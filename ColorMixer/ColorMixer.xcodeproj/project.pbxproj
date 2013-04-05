@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7890347417027BA5002B5AC5 /* Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 7890347317027BA5002B5AC5 /* Base.m */; };
-		78A1F99A1703D31A00F1EA18 /* orange.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78A1F9991703D31A00F1EA18 /* orange.jpg */; };
+		78966BE0170E824700D31580 /* orange.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78966A0B170E824500D31580 /* orange.jpg */; };
 		78A1F9B81703DFA400F1EA18 /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A1F9B71703DFA400F1EA18 /* ImageView.m */; };
 		78A47BA016FEC7050010F636 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A47B9F16FEC7050010F636 /* UIKit.framework */; };
 		78A47BA216FEC7050010F636 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A47BA116FEC7050010F636 /* Foundation.framework */; };
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		7890347317027BA5002B5AC5 /* Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base.m; sourceTree = "<group>"; };
-		78A1F9991703D31A00F1EA18 /* orange.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = orange.jpg; path = ../../../Downloads/orange.jpg; sourceTree = "<group>"; };
+		78966A0B170E824500D31580 /* orange.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = orange.jpg; path = ../../../Downloads/orange.jpg; sourceTree = "<group>"; };
 		78A1F9B51703DE7900F1EA18 /* Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
 		78A1F9B61703DFA400F1EA18 /* ImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
 		78A1F9B71703DFA400F1EA18 /* ImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageView.m; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		78A47BA616FEC7050010F636 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				78A1F9991703D31A00F1EA18 /* orange.jpg */,
+				78966A0B170E824500D31580 /* orange.jpg */,
 				78A47BA716FEC7050010F636 /* ColorMixer-Info.plist */,
 				78A47BA816FEC7050010F636 /* InfoPlist.strings */,
 				78A47BAB16FEC7050010F636 /* main.m */,
@@ -173,7 +173,7 @@
 				78A47BB216FEC7050010F636 /* Default.png in Resources */,
 				78A47BB416FEC7050010F636 /* Default@2x.png in Resources */,
 				78A47BB616FEC7050010F636 /* Default-568h@2x.png in Resources */,
-				78A1F99A1703D31A00F1EA18 /* orange.jpg in Resources */,
+				78966BE0170E824700D31580 /* orange.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
